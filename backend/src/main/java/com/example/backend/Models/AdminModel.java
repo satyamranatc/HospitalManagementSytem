@@ -7,24 +7,25 @@ import jakarta.persistence.Id;
 
 @Entity
 public class AdminModel {
-    private String FullName;
-    private String username;
-    private String password;
-
+  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String fullName;
+    private String username;
+    private String password;
+    
     public AdminModel(){}
     
     public AdminModel(String fullname, String username, String password) {
-        this.FullName = fullname;
+        this.fullName = fullname;
         this.username = username;
         this.password = password;
     }
 
     public String getFullName() {
-        return FullName;
+        return fullName;
     }
 
     public String getUsername() {
@@ -35,5 +36,17 @@ public class AdminModel {
         return password;
     }
 
+    // Setters:
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
 }

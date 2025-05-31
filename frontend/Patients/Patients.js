@@ -1,8 +1,68 @@
+// Documentat Loaded:
+let UserDiv = document.getElementById("User") 
+window.addEventListener("DOMContentLoaded", function(){
+  let User = JSON.parse(localStorage.getItem("user"));
+  if(User)
+  {
+    UserDiv.innerHTML = User.fullName
+    GetPatients()
+  }
+  else
+  {
+    window.location.href = "../Auth/Auth.html"
+  }
+})
+
+function logout()
+{
+    localStorage.removeItem("user")
+    window.location.href = "../Auth/Auth.html"
+}
+
+
 let patientGrid  = document.getElementById("patientGrid")
+
+
+async function AddPatient()
+{
+    // ASK PROMPt FOR String name;
+    // ASK PROMPt FOR int age;
+    // ASK PROMPt FOR String diagnosis;
+    // ASK PROMPt FOR String doctor;
+    // ASK PROMPt FOR String admitDate;
+    // ASK PROMPt FOR String contact;
+    // ASK PROMPt FOR String status;
+    // ASK PROMPt FOR String image;
+
+    let name = prompt("Enter Patient Name");
+    let age = prompt("Enter Patient Age");
+    let diagnosis = prompt("Enter Patient Diagnosis");
+    let doctor = prompt("Enter Patient Doctor");
+    let admitDate = prompt("Enter Patient Admit Date");
+    let contact = prompt("Enter Patient Contact");
+    let status = prompt("Enter Patient Status");
+    let image = prompt("Enter Patient Image URL");
+
+    let Patient = {
+        name:name,
+        age:age,
+        diagnosis:diagnosis,
+        doctor:doctor,
+        admitDate:admitDate,
+        contact:contact,
+        status:status,
+        image:image
+    }
+
+    await axios.post("http://localhost:8080/api/patients/add",Patient)
+    GetPatients()
+
+}
+
+
 
 async function GetPatients() 
 {
-
     let Res = await axios.get("http://localhost:8080/api/patients/list")
     let Patients = Res.data;
     ShowPatients(Patients)
@@ -10,10 +70,54 @@ async function GetPatients()
 
 
 
-function Fun(Pt)
+
+
+
+async function Update(Pt)
 {
-   alert("hello")
-   console.log(Pt);
+
+   let ConfirmDelte = confirm("Are you sure you want to Update this patient?")
+   if(ConfirmDelte)
+   {
+
+        let name = prompt("Enter Patient Name");
+    let age = prompt("Enter Patient Age");
+    let diagnosis = prompt("Enter Patient Diagnosis");
+    let doctor = prompt("Enter Patient Doctor");
+    let admitDate = prompt("Enter Patient Admit Date");
+    let contact = prompt("Enter Patient Contact");
+    let status = prompt("Enter Patient Status");
+    let image = prompt("Enter Patient Image URL");
+
+    let Patient = {
+        name:name,
+        age:age,
+        diagnosis:diagnosis,
+        doctor:doctor,
+        admitDate:admitDate,
+        contact:contact,
+        status:status,
+        image:image
+    }
+
+
+
+    await axios.put(`http://localhost:8080/api/patients/update/${Pt.id}`,Patient)
+    GetPatients()
+   }
+   
+}
+
+async function Delete(Pt)
+{
+
+   let ConfirmDelte = confirm("Are you sure you want to delete this patient?")
+   if(ConfirmDelte)
+   {
+    await axios.delete(`http://localhost:8080/api/patients/delete/${Pt.id}`)
+    GetPatients()
+   }
+   
 }
 
 
@@ -66,15 +170,15 @@ function ShowPatients(Patients)
         let DelBtn = Card.querySelectorAll(".patient-actions button")[2];
 
         ViewBtn.addEventListener("click", () => {
-            Fun(i)
+            // Fun(i)
         })
 
         UpdBtns.addEventListener("click", () => {
-            Fun(i)
+            Update(i)
         })
 
         DelBtn.addEventListener("click", () => {
-            Fun(i)
+            Delete(i)
         })
 
         
@@ -86,4 +190,3 @@ function ShowPatients(Patients)
 
 
 
-GetPatients()

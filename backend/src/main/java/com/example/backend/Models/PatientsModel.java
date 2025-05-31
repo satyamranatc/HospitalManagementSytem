@@ -21,10 +21,11 @@ public class PatientsModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public PatientsModel(){}
+    public PatientsModel() {
+    }
 
-
-        public PatientsModel(String name, int age, String diagnosis, String doctor, String admitDate,String contact, String status, String image) {
+    public PatientsModel(String name, int age, String diagnosis, String doctor, String admitDate, String contact,
+            String status, String image) {
         this.name = name;
         this.age = age;
         this.diagnosis = diagnosis;
@@ -33,6 +34,14 @@ public class PatientsModel {
         this.contact = contact;
         this.status = status;
         this.image = image;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -61,7 +70,7 @@ public class PatientsModel {
 
     public String getDoctor() {
         return doctor;
-    }   
+    }
 
     public void setDoctor(String doctor) {
         this.doctor = doctor;
@@ -98,5 +107,5 @@ public class PatientsModel {
     public void setImage(String image) {
         this.image = image;
     }
-    
+
 }

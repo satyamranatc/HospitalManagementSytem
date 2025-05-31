@@ -21,7 +21,7 @@
                 <li><a href="./Home.html" class="active">Home</a></li>
                 <li><a href="../Patients/Patients.html">Patients</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#" class="login-btn">Login</a></li>
+                <li id = "AuthControll" ></li>
             </ul>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
@@ -254,4 +254,34 @@
         </div>
     </footer>
 </body>
+<script>
+    let AuthControll = document.getElementById("AuthControll")
+    
+
+    window.addEventListener("DOMContentLoaded", function(){
+    let User = JSON.parse(localStorage.getItem("user"));
+    if(User)
+    {
+        AuthControll.innerHTML = `
+        <button id = 'logoutBtn' onclick="logout()">Logout</button>
+        <h4>${User.fullName}</h4>
+        `
+    }
+    else{
+        AuthControll.innerHTML = `
+        <button onclick="window.location.href = '../Auth/Auth.html'">Login</button>
+        `
+    }
+    })
+
+    function logout()
+    {
+        localStorage.removeItem("user")
+        window.location.href = "./Home.html"
+
+    }
+
+
+
+</script>
 </html>

@@ -573,6 +573,57 @@ footer {
 .footer-bottom p {
     color: #adb5bd;
 }
+#AuthControll {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+#AuthControll button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+#logoutBtn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+#AuthControll button:hover {
+    background-color: var(--secondary-color);
+}
+
+#AuthControll h4 {
+    margin: 0;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    #AuthControll {
+        order: 2;
+        margin-left: auto;
+    }
+    
+    #AuthControll h4 {
+        display: none; /* Hide username on mobile to save space */
+    }
+}
 
 /* Responsive Design */
 @media (max-width: 992px) {

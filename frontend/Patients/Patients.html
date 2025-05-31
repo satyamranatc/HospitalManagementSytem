@@ -22,7 +22,8 @@
                 <li><a href="../Home/Home.html">Home</a></li>
                 <li><a href="./Patients.html" class="active">Patients</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#" class="login-btn">Login</a></li>
+                <li id = "User"></li>
+                <li><button id = "logout" onclick="logout()" >Log Out</button></li>
             </ul>
             <div class="hamburger">
                 <i class="fas fa-bars"></i>
@@ -55,7 +56,7 @@
                         <option value="stable">Stable</option>
                     </select>
                 </div>
-                <button class="add-patient-btn">
+                <button onclick="AddPatient()" class="add-patient-btn">
                     <i class="fas fa-plus"></i> Add New Patient
                 </button>
             </div>

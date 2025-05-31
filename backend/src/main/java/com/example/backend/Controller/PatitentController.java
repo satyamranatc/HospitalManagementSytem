@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.Models.PatientsModel;
@@ -34,8 +35,9 @@ public class PatitentController {
         return patientsRepo.save(patient);
     }
 
-    @PutMapping("/api/patients/update")
-    public PatientsModel updatePatient( @RequestParam Long id, @RequestBody PatientsModel patient) {
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @PutMapping("/api/patients/update/{id}")
+    public PatientsModel updatePatient( @PathVariable Long id, @RequestBody PatientsModel patient) {
         PatientsModel patientToUpdate = patientsRepo.findById(id).get();
         patientToUpdate.setName(patient.getName());
         patientToUpdate.setAge(patient.getAge());
@@ -48,8 +50,10 @@ public class PatitentController {
         return patientsRepo.save(patientToUpdate);
     }
     
-    @DeleteMapping("/api/patients/delete")
-    public void deletePatient(@RequestParam Long id) {
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
+    @DeleteMapping("/api/patients/delete/{id}")
+    public void deletePatient(@PathVariable Long id) {
+        System.out.println(id);
         patientsRepo.deleteById(id);
     }
 

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth</title>
+    <link rel="stylesheet" href="./Auth.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Welcome</h2>
+        </div>
+
+        <div class="toggle-buttons">
+            <button class="toggle-btn active" onclick="showSignup()">Sign Up</button>
+            <button class="toggle-btn" onclick="showLogin()">Login</button>
+        </div>
+
+        <div class="forms-container">
+            <section id="SignUpFormSection" class="form-section active">
+                <form id="SignUpForm">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Username</label>
+                        <input type="email" id="signup-email" placeholder="Enter your Username">
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="submit-btn">Create Account</button>
+                </form>
+            </section>
+
+            <section id="LoginFormSection" class="form-section">
+                <form id="LoginForm">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" placeholder="Enter your password">
+                    </div>
+                    <button type="submit" class="submit-btn">Sign In</button>
+                </form>
+            </section>
+        </div>
+    </div>
+    <!-- This is Axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- This is Backend Wala Js -->
+    <script src="./Auth.js"></script>
+
+    <!-- This is Design Wala Js -->
+    <script>
+        function showSignup() {
+            // Hide login form and show signup form
+            document.getElementById('LoginFormSection').classList.remove('active');
+            document.getElementById('SignUpFormSection').classList.add('active');
+            
+            // Update button states
+            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function showLogin() {
+            // Hide signup form and show login form
+            document.getElementById('SignUpFormSection').classList.remove('active');
+            document.getElementById('LoginFormSection').classList.add('active');
+            
+            // Update button states
+            document.querySelectorAll('.toggle-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        // Form submission handlers (optional)
+        document.getElementById('SignUpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Sign up form submitted!');
+        });
+
+        document.getElementById('LoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Login form submitted!');
+        });
+    </script>
+</body>
+</html>
